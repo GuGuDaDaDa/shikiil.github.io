@@ -1,14 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>第一篇Blog</title>
-    <url>/2020/11/26/%E7%AC%AC%E4%B8%80%E7%AF%87Blog/</url>
-    <content><![CDATA[<h1 id="搭建好HEXO的第一篇博客，没什么好说的"><a href="#搭建好HEXO的第一篇博客，没什么好说的" class="headerlink" title="搭建好HEXO的第一篇博客，没什么好说的"></a>搭建好HEXO的第一篇博客，没什么好说的</h1>]]></content>
+    <title>Spring</title>
+    <url>/2020/11/26/Spring/</url>
+    <content><![CDATA[<h1 id="Spring注解"><a href="#Spring注解" class="headerlink" title="Spring注解"></a>Spring注解</h1><h2 id="自动装配"><a href="#自动装配" class="headerlink" title="自动装配"></a>自动装配</h2><p>首先需要在xml中添加    </p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://www.springframework.org/schema/beans&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:xsi</span>=<span class="string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xsi:schemaLocation</span>=<span class="string">&quot;http://www.springframework.org/schema/beans</span></span></span><br><span class="line"><span class="tag"><span class="string">        http://www.springframework.org/schema/beans/spring-beans.xsd</span></span></span><br><span class="line"><span class="tag"><span class="string">        http://www.springframework.org/schema/context</span></span></span><br><span class="line"><span class="tag"><span class="string">        http://www.springframework.org/schema/context/spring-context.xsd&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:p</span>=<span class="string">&quot;http://www.springframework.org/schema/p&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">xmlns:context</span> = <span class="string">&quot;http://www.springframework.org/schema/context&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">context:annotation-config</span>&gt;</span><span class="tag">&lt;/<span class="name">context:annotation-config</span>&gt;</span></span><br><span class="line"> </span><br><span class="line">    </span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;hello&quot;</span> <span class="attr">class</span>=<span class="string">&quot;com.study.hello.Hello&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;str&quot;</span> <span class="attr">value</span>=<span class="string">&quot;Spring&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;hello2&quot;</span> <span class="attr">class</span>=<span class="string">&quot;com.study.hello.HelloT&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">constructor-arg</span> <span class="attr">type</span>=<span class="string">&quot;java.lang.String&quot;</span> <span class="attr">value</span>=<span class="string">&quot;yousan&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">constructor-arg</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;hello3&quot;</span> <span class="attr">class</span>=<span class="string">&quot;com.study.hello.Hello&quot;</span> <span class="attr">p:str</span>=<span class="string">&quot;name&quot;</span> <span class="attr">scope</span>=<span class="string">&quot;prototype&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;person&quot;</span> <span class="attr">class</span>=<span class="string">&quot;com.study.hello.Person&quot;</span> &gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">    </span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li><p>@Autowired</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Autowired</span></span><br><span class="line">   <span class="keyword">private</span> Hello hello;</span><br></pre></td></tr></table></figure>
+
+<p>先是根据byType，然后根据byName去自动匹配xml中对应的类</p>
+</li>
+<li><p>@Qualifier</p>
+<p>当@Autowired不能够自动匹配xml中复杂的类，可以在增加一条@Qualifier注解来进一步明确</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Autowired</span></span><br><span class="line">   <span class="meta">@Qualifier(value = &quot;hello2&quot;)</span></span><br><span class="line">   <span class="keyword">private</span> HelloT helloT;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="使用注解开发"><a href="#使用注解开发" class="headerlink" title="使用注解开发"></a>使用注解开发</h2><p>​    在xml中添加</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://www.springframework.org/schema/beans&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:xsi</span>=<span class="string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xsi:schemaLocation</span>=<span class="string">&quot;http://www.springframework.org/schema/beans</span></span></span><br><span class="line"><span class="tag"><span class="string">        http://www.springframework.org/schema/beans/spring-beans.xsd</span></span></span><br><span class="line"><span class="tag"><span class="string">        http://www.springframework.org/schema/context</span></span></span><br><span class="line"><span class="tag"><span class="string">        http://www.springframework.org/schema/context/spring-context.xsd&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:p</span>=<span class="string">&quot;http://www.springframework.org/schema/p&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:context</span> = <span class="string">&quot;http://www.springframework.org/schema/context&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 此时com.study.pojo下的注解就会生效 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">context:component-scan</span> <span class="attr">base-package</span>=<span class="string">&quot;com.study.pojo&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">context:component-scan</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">context:annotation-config</span>&gt;</span><span class="tag">&lt;/<span class="name">context:annotation-config</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>此时com.study.pojo下的类通过添加@Component就能实现自动装配</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Value(&quot;name&quot;)</span>  <span class="comment">//相当于&lt;property name=&quot;name&quot; value=&quot;name&quot;&gt;&lt;/property&gt;</span></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;User&#123;&quot;</span> +</span><br><span class="line">                <span class="string">&quot;name=&#x27;&quot;</span> + name + <span class="string">&#x27;\&#x27;&#x27;</span> +</span><br><span class="line">                <span class="string">&#x27;&#125;&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>Test类</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Mytest</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        ApplicationContext context = <span class="keyword">new</span> ClassPathXmlApplicationContext(<span class="string">&quot;applicationContext.xml&quot;</span>);</span><br><span class="line"></span><br><span class="line">        User user = context.getBean(<span class="string">&quot;user&quot;</span>,User.class);</span><br><span class="line"></span><br><span class="line">        System.out.println(user.toString());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li><p>衍生注解 </p>
+<p>在Spring中注解也可以分为MVC三层架构</p>
+<ul>
+<li>@Repository 【Dao】</li>
+<li>@Service  【Service】</li>
+<li>@Controller  【controller】</li>
+</ul>
+<p><strong>上面三种是等价的</strong></p>
+</li>
+</ul>
+<h2 id="使用java的方式配置Spring"><a href="#使用java的方式配置Spring" class="headerlink" title="使用java的方式配置Spring"></a>使用java的方式配置Spring</h2><p>使用java类的方法代替xml</p>
+<p>新建一个java类</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> com.study.pojo.User;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Bean;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.ComponentScan;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Configuration;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Configuration</span>  <span class="comment">//他本是是一个使用@Component的java类</span></span><br><span class="line"><span class="meta">@ComponentScan(&quot;com.study.pojo&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CConfig</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="comment">//注册一个Bean，相当于我们之前xml中的&lt;bean&gt;&lt;/bean&gt;</span></span><br><span class="line">    <span class="comment">//这个方法的名字，境相当于之前bean中的id值，需要通过方法名来获取类</span></span><br><span class="line">    <span class="comment">//这个方法的返回值，就相当于之前bean中的Class</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> User <span class="title">getUser</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> User();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>此时获取类的配置需要通过AnnotationConfigApplicationContext获取</p>
+<p>Test类</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> com.study.Config.CConfig;</span><br><span class="line"><span class="keyword">import</span> com.study.pojo.User;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.ApplicationContext;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.AnnotationConfigApplicationContext;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AnTest</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        ApplicationContext context = <span class="keyword">new</span> AnnotationConfigApplicationContext(CConfig.class);</span><br><span class="line">        User user = (User)context.getBean(<span class="string">&quot;getUser&quot;</span>);</span><br><span class="line"></span><br><span class="line">        System.out.println(user.toString());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+]]></content>
       <categories>
-        <category>Begin</category>
+        <category>note</category>
       </categories>
       <tags>
-        <tag>闲记</tag>
+        <tag>note</tag>
       </tags>
   </entry>
   <entry>
@@ -20,6 +69,17 @@
       </categories>
       <tags>
         <tag>Try</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>第一篇Blog</title>
+    <url>/2020/11/26/%E7%AC%AC%E4%B8%80%E7%AF%87Blog/</url>
+    <content><![CDATA[<h1 id="搭建好HEXO的第一篇博客，没什么好说的"><a href="#搭建好HEXO的第一篇博客，没什么好说的" class="headerlink" title="搭建好HEXO的第一篇博客，没什么好说的"></a>搭建好HEXO的第一篇博客，没什么好说的</h1>]]></content>
+      <categories>
+        <category>Begin</category>
+      </categories>
+      <tags>
+        <tag>闲记</tag>
       </tags>
   </entry>
 </search>
