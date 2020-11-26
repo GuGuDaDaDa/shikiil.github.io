@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>第一篇Blog</title>
+    <url>/2020/11/26/%E7%AC%AC%E4%B8%80%E7%AF%87Blog/</url>
+    <content><![CDATA[<h1 id="搭建好HEXO的第一篇博客，没什么好说的"><a href="#搭建好HEXO的第一篇博客，没什么好说的" class="headerlink" title="搭建好HEXO的第一篇博客，没什么好说的"></a>搭建好HEXO的第一篇博客，没什么好说的</h1>]]></content>
+      <categories>
+        <category>Begin</category>
+      </categories>
+      <tags>
+        <tag>闲记</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Try</title>
+    <url>/2020/11/26/Try/</url>
+    <content><![CDATA[<h1 id="Nothing"><a href="#Nothing" class="headerlink" title="Nothing"></a>Nothing</h1>]]></content>
+      <categories>
+        <category>Begin</category>
+      </categories>
+      <tags>
+        <tag>Try</tag>
+      </tags>
+  </entry>
+</search>
